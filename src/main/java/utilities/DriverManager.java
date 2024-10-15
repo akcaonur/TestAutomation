@@ -29,11 +29,11 @@ public class DriverManager {
         return driver;
     }
 
-    @After
-    public static void quit() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
-        }
-    }
+//    @After
+//    public static void quit() {
+//        if (driver != null) {
+//            driver.quit();
+//            driver = null;
+//        }
+//    }
 }

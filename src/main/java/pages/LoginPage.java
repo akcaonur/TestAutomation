@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.DriverManager;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.Duration;
 
 public class LoginPage extends BasePage {
@@ -23,22 +25,46 @@ public class LoginPage extends BasePage {
 
     @FindBy(id = "login")
     WebElement loginBtn;
+
     @FindBy(name = "name")
     WebElement usernameField;
+
     @FindBy(name = "password")
     WebElement passwordField;
+
     @FindBy(xpath = "//button/*[text()='Giriş']")
     WebElement girisBtn;
+
     @FindBy(xpath = "(//*[text()='Hemen oyna'])[1]")
     WebElement hemenOynaBtn;
+
     @FindBy(xpath = "//*[@class='village buildingView ']")
-    WebElement villageView;
-    @FindBy(xpath = "//*[@data-name='Sığınak']")
-    WebElement SınakView;
+    WebElement koyMerkezi;
+
+    @FindBy(xpath = "//*[@data-name='Köşk']")
+    WebElement Kosk;
+
+    @FindBy(xpath = "//button[contains(@value, 'Bu seviyeye')]")
+    WebElement seviyeArttır;
+
+    @FindBy(xpath = "(//*[@href='/hero/adventures' ])[1]")
+    WebElement maceralar;
+
+    @FindBy(xpath = "(//*[@class='borderGap adventureList']//button)[1]")
+    WebElement maceraGonder;
+
+    @FindBy(xpath = "//*[contains(text(),'Yağma listesi')]")
+    WebElement yagmaListesi;
+
+    @FindBy(xpath = "//*[text()='Tüm yağma listelerini başlat']")
+    WebElement yagmaListesiBaslat;
+
+    @FindBy(xpath = "//*[@data-name='Askeri Üs']")
+    WebElement AskeriÜs;
 
 
     @Given("Giriş Yap")
-    public void login()  {
+    public void login() {
         loginBtn.click();
         usernameField.isDisplayed();
         usernameField.sendKeys(configReader.getProperty("username"));
@@ -47,10 +73,37 @@ public class LoginPage extends BasePage {
         girisBtn.click();
         WebElement element = wait.until(ExpectedConditions.visibilityOf(hemenOynaBtn));
         element.click();
-        WebElement element1 = wait.until(ExpectedConditions.visibilityOf(villageView));
-        element1.isDisplayed();
 
 
+    }
+
+    @Given("macera gonder.")
+    public void play() throws InterruptedException {
+
+
+        WebElement element4 = wait.until(ExpectedConditions.visibilityOf(maceralar));
+        element4.isDisplayed();
+        element4.click();
+        WebElement element5 = wait.until(ExpectedConditions.visibilityOf(maceraGonder));
+        element5.isDisplayed();
+        element5.click();
+
+
+
+
+        Thread.sleep(60000);
+
+    }
+    @Given("yağma listesi gönder")
+    public void sendTroops(){
+
+        koyMerkezi.click();
+        WebElement element6 = wait.until(ExpectedConditions.visibilityOf(AskeriÜs));
+        AskeriÜs.click();
+        WebElement element7 = wait.until(ExpectedConditions.visibilityOf(yagmaListesi));
+        element7.click();
+        WebElement element8 = wait.until(ExpectedConditions.visibilityOf(yagmaListesiBaslat));
+        yagmaListesiBaslat.click();
 
 
     }
