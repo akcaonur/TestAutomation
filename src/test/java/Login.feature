@@ -6,27 +6,22 @@ Feature: Login
     * Koşku <data> seviyeye bas.
     * yağma listesi gönder
     * 10 dakika beklenir.
-    * Giriş Yap
     * macera gonder.
     * Koşku 7 seviyeye bas.
     * yağma listesi gönder
     * 10 dakika beklenir.
-    * Giriş Yap
     * macera gonder.
     * Koşku 7 seviyeye bas.
     * yağma listesi gönder
     * 10 dakika beklenir.
-    * Giriş Yap
     * macera gonder.
     * Koşku 7 seviyeye bas.
     * yağma listesi gönder
     * 10 dakika beklenir.
-    * Giriş Yap
     * macera gonder.
     * Koşku 7 seviyeye bas.
     * yağma listesi gönder
     * 10 dakika beklenir.
-    * Giriş Yap
     * macera gonder.
     * Koşku 7 seviyeye bas.
     * yağma listesi gönder
