@@ -121,4 +121,10 @@ public class LoginPage extends BasePage {
 
         }
     }
+
+    @Given("(.*) dakika beklenir.$")
+    public void waitSec(int lvl) throws InterruptedException {
+        Thread.sleep(Duration.ofMinutes(lvl));
+    }
+
 }
