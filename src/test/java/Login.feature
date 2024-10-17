@@ -2,14 +2,7 @@ Feature: Login
   Scenario: Yağma Yapma
     * Giriş Yap
     * macera gonder.
+    * Koşku 7 seviyeye bas.
     * yağma listesi gönder
-
-Scenario: Dış kaynakları geliştir
-  * tarlaları 5 yap
-  * oduncuları 4 yap
-  * 
-
-  Scenario:
-
 
 
