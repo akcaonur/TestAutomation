@@ -15,7 +15,7 @@ import java.time.Duration;
 
 public class LoginPage extends BasePage {
     WebDriver driver;
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     public LoginPage() {
         driver = DriverManager.getDriver();
@@ -122,7 +122,7 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(Kosk)).click();
         try {
             if (wait.until(ExpectedConditions.visibilityOf(Yükselt)).isDisplayed()) {
-                if (Yükselt.getAttribute("value").equals("Bu seviyeye geliştir: " + lvl)) {
+                if (Yükselt.getAttribute("value").equals("Bu seviyeye geliştir: " + (lvl+1))) {
 
                 } else {
                     System.out.println("Yükseltme Başarılı");
@@ -145,24 +145,25 @@ public class LoginPage extends BasePage {
 
     @Given("Yağma gönder2.$")
     public void sendYagma2() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement YagmaListesiVahalar;
         WebElement YagmaListesiVaha;
         koyMerkezi.click();
-        wait.until(ExpectedConditions.visibilityOf(AskeriÜs)).click();
-        wait.until(ExpectedConditions.visibilityOf(yagmaListesi)).click();
+        AskeriÜs.click();
+        yagmaListesi.click();
         System.out.println("0");
         for (int i = 1; i <= 40; i++) {
             YagmaListesiVahalar = driver.findElement(By.xpath("(//*[@class='slot  '])[" + i + "]"));
-            JavascriptExecutor js = (JavascriptExecutor) driver;
+
             js.executeScript("arguments[0].scrollIntoView({block: 'center'});", YagmaListesiVahalar);
             System.out.println("1");
             try {
                 WebElement element = driver.findElement(By.xpath("(//*[@class='slot  '])[" + i + "]//td//i[@class='attack_small']"));
-
             } catch (Exception e) {
                 System.out.println("Hata" + e.getMessage());
                 driver.findElement(By.xpath("(//*[@class='slot  '])[" + i + "]//td//input")).click();
-                wait.until(ExpectedConditions.visibilityOf(yagmaListesiBaslat2)).click();
+                js.executeScript("arguments[0].scrollIntoView({block: 'center'});", yagmaListesiBaslat2);
+                yagmaListesiBaslat2.click();
                 try {
                    Boolean b = wait.until(ExpectedConditions.visibilityOf(YagmaListesiAskerBitti)).isDisplayed();
                    if (b.equals(true)){
@@ -173,6 +174,7 @@ public class LoginPage extends BasePage {
                 }
             }
         }
+
     }
     @Given("Festival Başlat.$")
     public void startFest()   {
