@@ -39,6 +39,7 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//*[@class='village buildingView ']")
     WebElement koyMerkezi;
+
     @FindBy(xpath = "//*[@href='/dorf2.php']")
     WebElement koyMerkezi2;
 
@@ -53,9 +54,9 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "(//*[@class='borderGap adventureList']//button)[1]")
     WebElement maceraGonder;
+
     @FindBy(xpath = "(//*[text()='Tüm maceralara çıktın; daha fazlası için daha sonra tekrar gel!']")
     WebElement maceraBulunamadı;
-
 
     @FindBy(xpath = "//*[contains(text(),'Yağma listesi')]")
     WebElement yagmaListesi;
@@ -69,9 +70,17 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[contains(@value,'Bu seviyeye geliştir:')]")
     WebElement Yükselt;
 
-
     @FindBy(xpath = "(//*[@preserveAspectRatio='none'])[1]")
     WebElement YagmaListesiAskerBitti;
+
+    @FindBy(xpath = "//*[@value='Tut']")
+    WebElement FestivalBaşlat;
+
+    @FindBy(xpath = "//*[@data-name='Belediye']")
+    WebElement Belediye;
+
+    @FindBy(xpath = "//*[@class='village resourceView ']")
+    WebElement KoyKaynak;
 
 
     @Given("Giriş Yap")
@@ -131,8 +140,8 @@ public class LoginPage extends BasePage {
         Thread.sleep(Duration.ofMinutes(lvl));
     }
 
-    @Given("Yağma Gönder 2.$")
-    public void sendYagma() {
+    @Given("Yağma gönder2.$")
+    public void sendYagma2() {
         WebElement YagmaListesiVahalar;
         WebElement YagmaListesiVaha;
         koyMerkezi.click();
@@ -151,7 +160,6 @@ public class LoginPage extends BasePage {
                 System.out.println("Hata" + e.getMessage());
                 driver.findElement(By.xpath("(//*[@class='slot  '])[" + i + "]//td//input")).click();
                 wait.until(ExpectedConditions.visibilityOf(yagmaListesiBaslat)).click();
-
                 try {
                    Boolean b = wait.until(ExpectedConditions.visibilityOf(YagmaListesiAskerBitti)).isDisplayed();
                    if (b.equals(true)){
@@ -161,13 +169,17 @@ public class LoginPage extends BasePage {
 
                 }
             }
+        }
+    }
+    @Given("Festival Başlat.$")
+    public void startFest()   {
+        wait.until(ExpectedConditions.visibilityOf(koyMerkezi2)).click();
+        wait.until(ExpectedConditions.visibilityOf(Belediye)).click();
 
-
-
+        try {
+            FestivalBaşlat.click();
+        }catch (Exception e){
 
         }
-
     }
-
-
 }
