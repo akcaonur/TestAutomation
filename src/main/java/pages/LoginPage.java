@@ -64,6 +64,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[text()='Tüm yağma listelerini başlat']")
     WebElement yagmaListesiBaslat;
 
+    @FindBy(xpath = "(//*[@class='textButtonV2 buttonFramed startFarmList rectangle withText green'])[1]")
+    WebElement yagmaListesiBaslat2;
+
     @FindBy(xpath = "//*[@data-name='Askeri Üs']")
     WebElement AskeriÜs;
 
@@ -159,7 +162,7 @@ public class LoginPage extends BasePage {
             } catch (Exception e) {
                 System.out.println("Hata" + e.getMessage());
                 driver.findElement(By.xpath("(//*[@class='slot  '])[" + i + "]//td//input")).click();
-                wait.until(ExpectedConditions.visibilityOf(yagmaListesiBaslat)).click();
+                wait.until(ExpectedConditions.visibilityOf(yagmaListesiBaslat2)).click();
                 try {
                    Boolean b = wait.until(ExpectedConditions.visibilityOf(YagmaListesiAskerBitti)).isDisplayed();
                    if (b.equals(true)){
