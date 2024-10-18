@@ -21,7 +21,7 @@ public class BasePage {
     public boolean waitUntilElementVisible(WebElement elementFindBy) {
 
         try {
-            FluentWait<WebDriver> wait = (new WebDriverWait(driver, Duration.ofSeconds(10))).pollingEvery(Duration.ofSeconds(5L)).withTimeout(Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).ignoring(NoSuchElementException.class);
+            FluentWait<WebDriver> wait = (new WebDriverWait(driver, Duration.ofSeconds(1))).pollingEvery(Duration.ofSeconds(1L)).withTimeout(Duration.ofSeconds(1)).ignoring(StaleElementReferenceException.class).ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.visibilityOf(elementFindBy));
             return true;
         }catch (Exception e) {

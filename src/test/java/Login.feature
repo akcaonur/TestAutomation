@@ -2,38 +2,12 @@ Feature: Login
 
   Scenario Outline: Yağma Yapma
     * Giriş Yap
-    * macera gonder.
-    * Koşku <data> seviyeye bas.
-    * yağma listesi gönder
-    * 10 dakika beklenir.
-    * macera gonder.
-    * Koşku 7 seviyeye bas.
-    * yağma listesi gönder
-    * 10 dakika beklenir.
-    * macera gonder.
-    * Koşku 7 seviyeye bas.
-    * yağma listesi gönder
-    * 10 dakika beklenir.
-    * macera gonder.
-    * Koşku 7 seviyeye bas.
-    * yağma listesi gönder
-    * 10 dakika beklenir.
-    * macera gonder.
-    * Koşku 7 seviyeye bas.
-    * yağma listesi gönder
-    * 10 dakika beklenir.
-    * macera gonder.
-    * Koşku 7 seviyeye bas.
-    * yağma listesi gönder
-    * 10 dakika beklenir.
+    * Yağma Gönder 2.
+    * 6 dakika beklenir.
 
     Examples:
       | data |
       | 10   |
-      | 10   |
-      | 10   |
-      | 10   |
-      | 10   |
-      | 10   |
+
 
 

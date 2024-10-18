@@ -1,22 +1,21 @@
 package pages;
 
 import io.cucumber.java.en.Given;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.DriverManager;
 
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.time.Duration;
 
 public class LoginPage extends BasePage {
     WebDriver driver;
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 
     public LoginPage() {
         driver = DriverManager.getDriver();
@@ -71,6 +70,10 @@ public class LoginPage extends BasePage {
     WebElement Yükselt;
 
 
+    @FindBy(xpath = "(//*[@preserveAspectRatio='none'])[1]")
+    WebElement YagmaListesiAskerBitti;
+
+
     @Given("Giriş Yap")
     public void login() {
         loginBtn.click();
@@ -86,7 +89,7 @@ public class LoginPage extends BasePage {
     public void play() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(maceralar)).click();
         try {
-             wait.until(ExpectedConditions.visibilityOf(maceraGonder)).click();
+            wait.until(ExpectedConditions.visibilityOf(maceraGonder)).click();
         } catch (Exception e) {
             System.out.println("macera yok");
         }
@@ -96,7 +99,8 @@ public class LoginPage extends BasePage {
     public void sendTroops() {
         koyMerkezi.click();
         wait.until(ExpectedConditions.visibilityOf(AskeriÜs)).click();
-        wait.until(ExpectedConditions.visibilityOf(yagmaListesi)).click();;
+        wait.until(ExpectedConditions.visibilityOf(yagmaListesi)).click();
+
         wait.until(ExpectedConditions.visibilityOf(yagmaListesiBaslat)).click();
     }
 
@@ -106,9 +110,9 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(Kosk)).click();
         try {
             if (wait.until(ExpectedConditions.visibilityOf(Yükselt)).isDisplayed()) {
-                if(Yükselt.getAttribute("value").equals("Bu seviyeye geliştir: "+lvl)){
+                if (Yükselt.getAttribute("value").equals("Bu seviyeye geliştir: " + lvl)) {
 
-                }else {
+                } else {
                     System.out.println("Yükseltme Başarılı");
                     wait.until(ExpectedConditions.visibilityOf(Yükselt)).click();
                 }
@@ -117,7 +121,7 @@ public class LoginPage extends BasePage {
                 System.out.println("Seviye basılamıyor.Hammadde yok.");
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
@@ -126,5 +130,44 @@ public class LoginPage extends BasePage {
     public void waitSec(int lvl) throws InterruptedException {
         Thread.sleep(Duration.ofMinutes(lvl));
     }
+
+    @Given("Yağma Gönder 2.$")
+    public void sendYagma() {
+        WebElement YagmaListesiVahalar;
+        WebElement YagmaListesiVaha;
+        koyMerkezi.click();
+        wait.until(ExpectedConditions.visibilityOf(AskeriÜs)).click();
+        wait.until(ExpectedConditions.visibilityOf(yagmaListesi)).click();
+        System.out.println("0");
+        for (int i = 1; i <= 40; i++) {
+            YagmaListesiVahalar = driver.findElement(By.xpath("(//*[@class='slot  '])[" + i + "]"));
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", YagmaListesiVahalar);
+            System.out.println("1");
+            try {
+                WebElement element = driver.findElement(By.xpath("(//*[@class='slot  '])[" + i + "]//td//i[@class='attack_small']"));
+
+            } catch (Exception e) {
+                System.out.println("Hata" + e.getMessage());
+                driver.findElement(By.xpath("(//*[@class='slot  '])[" + i + "]//td//input")).click();
+                wait.until(ExpectedConditions.visibilityOf(yagmaListesiBaslat)).click();
+
+                try {
+                   Boolean b = wait.until(ExpectedConditions.visibilityOf(YagmaListesiAskerBitti)).isDisplayed();
+                   if (b.equals(true)){
+                       break;
+                   };
+                }catch (Exception exception){
+
+                }
+            }
+
+
+
+
+        }
+
+    }
+
 
 }
