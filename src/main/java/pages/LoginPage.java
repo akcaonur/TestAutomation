@@ -195,8 +195,11 @@ public class LoginPage extends BasePage {
         }
     }
 
-    @Given("Gocmen Bas")
+    @Given("Gocmen Bas.$")
     public void gocmenBas(){
+
+        wait.until(ExpectedConditions.visibilityOf(koyMerkezi)).click();
+        wait.until(ExpectedConditions.visibilityOf(Kosk)).click();
         wait.until(ExpectedConditions.visibilityOf(gocmenSecme)).click();
         wait.until(ExpectedConditions.visibilityOf(egitBtn)).click();
     }
