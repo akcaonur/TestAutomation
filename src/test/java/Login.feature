@@ -3,18 +3,42 @@ Feature: Login
   Scenario Outline: Yağma Yapma
     * Giriş Yap
     #* Festival Başlat.
-    * Koşku 10 seviyeye bas.
-    * Yağma gönder2.
+    
+    * yağma listesi gönder
+    * <data> dakika beklenir.
+        #* Festival Başlat.
+    
+    * yağma listesi gönder
+    * <data> dakika beklenir.
+        #* Festival Başlat.
+    
+    * yağma listesi gönder
+    * <data> dakika beklenir.
+        #* Festival Başlat.
+    
+    * yağma listesi gönder
+    * <data> dakika beklenir.
+        #* Festival Başlat.
+    
+    * yağma listesi gönder
+    * <data> dakika beklenir.
+        #* Festival Başlat.
+    
+    * yağma listesi gönder
+    * <data> dakika beklenir.
+        #* Festival Başlat.
+    
+    * yağma listesi gönder
     * <data> dakika beklenir.
 
 
     Examples:
       | data |
-      | 10   |
-      | 10   |
-      | 10   |
-      | 10   |
-      | 10   |
-      | 10   |
-      | 10   |
-      | 10   |
+      | 5   |
+      | 5   |
+      | 5   |
+      | 5   |
+      | 5   |
+      | 5   |
+      | 5   |
+      | 5   |

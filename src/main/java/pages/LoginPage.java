@@ -85,6 +85,12 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@class='village resourceView ']")
     WebElement KoyKaynak;
 
+    @FindBy(xpath = "(//a[@href='#'])[7]")
+    WebElement gocmenSecme;
+
+    @FindBy(id = "s1")
+    WebElement egitBtn;
+
 
     @Given("Giriş Yap")
     public void login() {
@@ -176,6 +182,7 @@ public class LoginPage extends BasePage {
         }
 
     }
+
     @Given("Festival Başlat.$")
     public void startFest()   {
         wait.until(ExpectedConditions.visibilityOf(koyMerkezi2)).click();
@@ -186,5 +193,11 @@ public class LoginPage extends BasePage {
         }catch (Exception e){
 
         }
+    }
+
+    @Given("Gocmen Bas")
+    public void gocmenBas(){
+        wait.until(ExpectedConditions.visibilityOf(gocmenSecme)).click();
+        wait.until(ExpectedConditions.visibilityOf(egitBtn)).click();
     }
 }
