@@ -15,7 +15,7 @@ import java.time.Duration;
 
 public class BasePage {
     WebDriver driver = DriverManager.getDriver();
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     ConfigReader configReader = new ConfigReader();
 
     public boolean waitUntilElementVisible(WebElement elementFindBy) {

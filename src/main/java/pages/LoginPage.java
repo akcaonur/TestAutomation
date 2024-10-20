@@ -8,14 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.DriverManager;
 
 import java.time.Duration;
 
 public class LoginPage extends BasePage {
     WebDriver driver;
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
 
     public LoginPage() {
         driver = DriverManager.getDriver();
@@ -91,6 +90,14 @@ public class LoginPage extends BasePage {
     @FindBy(id = "s1")
     WebElement egitBtn;
 
+    @FindBy(xpath = "//*[@class='village resourceView ']")
+    WebElement kaynakAlanları;
+
+    @FindBy(xpath = "//*[@data-gid='4']")
+    WebElement tahılAlanları;
+
+
+
 
     @Given("Giriş Yap")
     public void login() {
@@ -101,6 +108,7 @@ public class LoginPage extends BasePage {
         passwordField.sendKeys(configReader.getProperty("password"));
         girisBtn.click();
         wait.until(ExpectedConditions.visibilityOf(hemenOynaBtn)).click();
+        wait.until(ExpectedConditions.visibilityOf(KoyKaynak)).isDisplayed();
     }
 
     @Given("macera gonder.")
@@ -197,10 +205,67 @@ public class LoginPage extends BasePage {
 
     @Given("Gocmen Bas.$")
     public void gocmenBas(){
-
         wait.until(ExpectedConditions.visibilityOf(koyMerkezi)).click();
         wait.until(ExpectedConditions.visibilityOf(Kosk)).click();
         wait.until(ExpectedConditions.visibilityOf(gocmenSecme)).click();
         wait.until(ExpectedConditions.visibilityOf(egitBtn)).click();
+    }
+
+    @Given("Tahıl kaynakları Geliştir.$")
+    public void upgradeT()  {
+        wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
+        for (int i=1;i<=15;i++){
+           WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='4'])["+i+"]"))));
+            System.out.println(kaynakAlanı.getAttribute("class"));
+
+            if(kaynakAlanı.getAttribute("class").contains("good level")){
+                kaynakAlanı.click();
+                Yükselt.click();
+            }
+        }
+    }
+    @Given("(.*) koy seç.$")
+    public void selectVillage(String villageName){
+        driver.findElement(By.xpath("//*[text()='"+villageName+"']")).click();
+
+
+
+    }
+
+    @Given("Odun kaynakları Geliştir.$")
+    public void upgradeO()  {
+        wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
+        for (int i=1;i<=15;i++){
+            WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='1'])["+i+"]"))));
+            System.out.println(kaynakAlanı.getAttribute("class"));
+            if(kaynakAlanı.getAttribute("class").contains("good level")){
+                kaynakAlanı.click();
+                Yükselt.click();
+            }
+        }
+    }
+    @Given("Demir kaynakları Geliştir.$")
+    public void upgradeD()  {
+        wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
+        for (int i=1;i<=15;i++){
+            WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='3'])["+i+"]"))));
+            System.out.println(kaynakAlanı.getAttribute("class"));
+            if(kaynakAlanı.getAttribute("class").contains("good level")){
+                kaynakAlanı.click();
+                Yükselt.click();
+            }
+        }
+    }
+    @Given("Tuğla kaynakları Geliştir.$")
+    public void upgradeTu()  {
+        wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
+        for (int i=1;i<=15;i++){
+            WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='2'])["+i+"]"))));
+            System.out.println(kaynakAlanı.getAttribute("class"));
+            if(kaynakAlanı.getAttribute("class").contains("good level")){
+                kaynakAlanı.click();
+                Yükselt.click();
+            }
+        }
     }
 }

@@ -2,43 +2,11 @@ Feature: Login
 
   Scenario Outline: Yağma Yapma
     * Giriş Yap
-    #* Festival Başlat.
-    
-    * yağma listesi gönder
-    * <data> dakika beklenir.
-        #* Festival Başlat.
-    
-    * yağma listesi gönder
-    * <data> dakika beklenir.
-        #* Festival Başlat.
-    
-    * yağma listesi gönder
-    * <data> dakika beklenir.
-        #* Festival Başlat.
-    
-    * yağma listesi gönder
-    * <data> dakika beklenir.
-        #* Festival Başlat.
-    
-    * yağma listesi gönder
-    * <data> dakika beklenir.
-        #* Festival Başlat.
-    
-    * yağma listesi gönder
-    * <data> dakika beklenir.
-        #* Festival Başlat.
-    
-    * yağma listesi gönder
-    * <data> dakika beklenir.
-
+    * Todes001 koy seç.
+    * Tahıl kaynakları Geliştir.
 
     Examples:
       | data |
-      | 5   |
-      | 5   |
-      | 5   |
-      | 5   |
-      | 5   |
-      | 5   |
-      | 5   |
-      | 5   |
+      | 10   |
+
+

@@ -18,7 +18,7 @@ public class DriverManager {
         driver = DriverManager.getDriver();
         driver.get(config.getProperty("url"));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     public static WebDriver getDriver() {
