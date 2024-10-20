@@ -96,8 +96,11 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@data-gid='4']")
     WebElement tahılAlanları;
 
+    @FindBy(xpath = "//*[text()='Yağma Listesi']")
+    WebElement yagmaListesiPlus;
 
-
+    @FindBy(xpath = "//*[@onclick='Travian.Game.Layout.toggleAvatarSelection();']")
+    WebElement hesapSimgesi;
 
     @Given("Giriş Yap")
     public void login() {
@@ -136,7 +139,7 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(Kosk)).click();
         try {
             if (wait.until(ExpectedConditions.visibilityOf(Yükselt)).isDisplayed()) {
-                if (Yükselt.getAttribute("value").equals("Bu seviyeye geliştir: " + (lvl+1))) {
+                if (Yükselt.getAttribute("value").equals("Bu seviyeye geliştir: " + (lvl + 1))) {
 
                 } else {
                     System.out.println("Yükseltme Başarılı");
@@ -179,11 +182,12 @@ public class LoginPage extends BasePage {
                 js.executeScript("arguments[0].scrollIntoView({block: 'center'});", yagmaListesiBaslat2);
                 yagmaListesiBaslat2.click();
                 try {
-                   Boolean b = wait.until(ExpectedConditions.visibilityOf(YagmaListesiAskerBitti)).isDisplayed();
-                   if (b.equals(true)){
-                       break;
-                   };
-                }catch (Exception exception){
+                    Boolean b = wait.until(ExpectedConditions.visibilityOf(YagmaListesiAskerBitti)).isDisplayed();
+                    if (b.equals(true)) {
+                        break;
+                    }
+                    ;
+                } catch (Exception exception) {
 
                 }
             }
@@ -192,19 +196,19 @@ public class LoginPage extends BasePage {
     }
 
     @Given("Festival Başlat.$")
-    public void startFest()   {
+    public void startFest() {
         wait.until(ExpectedConditions.visibilityOf(koyMerkezi2)).click();
         wait.until(ExpectedConditions.visibilityOf(Belediye)).click();
 
         try {
             FestivalBaşlat.click();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
     @Given("Gocmen Bas.$")
-    public void gocmenBas(){
+    public void gocmenBas() {
         wait.until(ExpectedConditions.visibilityOf(koyMerkezi)).click();
         wait.until(ExpectedConditions.visibilityOf(Kosk)).click();
         wait.until(ExpectedConditions.visibilityOf(gocmenSecme)).click();
@@ -212,60 +216,95 @@ public class LoginPage extends BasePage {
     }
 
     @Given("Tahıl kaynakları Geliştir.$")
-    public void upgradeT()  {
+    public void upgradeT() {
         wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
-        for (int i=1;i<=15;i++){
-           WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='4'])["+i+"]"))));
+        for (int i = 1; i <= 15; i++) {
+            WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='4'])[" + i + "]"))));
             System.out.println(kaynakAlanı.getAttribute("class"));
 
-            if(kaynakAlanı.getAttribute("class").contains("good level")){
+            if (kaynakAlanı.getAttribute("class").contains("good level")) {
                 kaynakAlanı.click();
                 Yükselt.click();
             }
         }
     }
-    @Given("(.*) koy seç.$")
-    public void selectVillage(String villageName){
-        driver.findElement(By.xpath("//*[text()='"+villageName+"']")).click();
 
+    @Given("(.*) koy seç.$")
+    public void selectVillage(String villageName) {
+        driver.findElement(By.xpath("//*[text()='" + villageName + "']")).click();
 
 
     }
 
     @Given("Odun kaynakları Geliştir.$")
-    public void upgradeO()  {
+    public void upgradeO() {
         wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
-        for (int i=1;i<=1;i++){
-            WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='1'])["+i+"]"))));
+        for (int i = 1; i <= 1; i++) {
+            WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='1'])[" + i + "]"))));
             System.out.println(kaynakAlanı.getAttribute("class"));
-            if(kaynakAlanı.getAttribute("class").contains("good level")){
+            if (kaynakAlanı.getAttribute("class").contains("good level")) {
                 kaynakAlanı.click();
                 Yükselt.click();
             }
         }
     }
+
     @Given("Demir kaynakları Geliştir.$")
-    public void upgradeD()  {
+    public void upgradeD() {
         wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
-        for (int i=1;i<=1;i++){
-            WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='3'])["+i+"]"))));
+        for (int i = 1; i <= 1; i++) {
+            WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='3'])[" + i + "]"))));
             System.out.println(kaynakAlanı.getAttribute("class"));
-            if(kaynakAlanı.getAttribute("class").contains("good level")){
+            if (kaynakAlanı.getAttribute("class").contains("good level")) {
                 kaynakAlanı.click();
                 Yükselt.click();
             }
         }
     }
+
     @Given("Tuğla kaynakları Geliştir.$")
-    public void upgradeTu()  {
+    public void upgradeTu() {
         wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
-        for (int i=1;i<=1;i++){
-            WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='2'])["+i+"]"))));
+        for (int i = 1; i <= 1; i++) {
+            WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='2'])[" + i + "]"))));
             System.out.println(kaynakAlanı.getAttribute("class"));
-            if(kaynakAlanı.getAttribute("class").contains("good level")){
+            if (kaynakAlanı.getAttribute("class").contains("good level")) {
                 kaynakAlanı.click();
                 Yükselt.click();
             }
         }
     }
+
+    @Given("Tüm kaynakları Geliştir.$")
+    public void upgradeAll() {
+        wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
+
+        for (int i = 1; i <= 18; i++) {
+            WebElement element = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@data-aid='" + i + "']"))));
+            System.out.println(element.getAttribute("class"));
+            if (element.getAttribute("class").contains("good level")) {
+                element.click();
+                Yükselt.click();
+            }
+        }
+    }
+
+    @Given("Yagma Listesi2.$")
+    public void sendYagma1() {
+        yagmaListesiPlus.click();
+        for (int i = 1; i <= 3; i++) {
+            driver.findElement(By.xpath("(//*[text()='Başlangıç'])[" + i + "]")).click();
+        }
+    }
+
+    @Given("(.*) hesaba gec.$")
+    public void changeAcc(String accName) throws InterruptedException {
+        Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOf(hesapSimgesi)).click();
+        Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[text()='" + accName + "']")))).click();
+        Thread.sleep(1000);
+    }
+
+
 }
