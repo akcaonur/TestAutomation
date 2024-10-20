@@ -235,7 +235,7 @@ public class LoginPage extends BasePage {
     @Given("Odun kaynakları Geliştir.$")
     public void upgradeO()  {
         wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
-        for (int i=1;i<=15;i++){
+        for (int i=1;i<=1;i++){
             WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='1'])["+i+"]"))));
             System.out.println(kaynakAlanı.getAttribute("class"));
             if(kaynakAlanı.getAttribute("class").contains("good level")){
@@ -247,7 +247,7 @@ public class LoginPage extends BasePage {
     @Given("Demir kaynakları Geliştir.$")
     public void upgradeD()  {
         wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
-        for (int i=1;i<=15;i++){
+        for (int i=1;i<=1;i++){
             WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='3'])["+i+"]"))));
             System.out.println(kaynakAlanı.getAttribute("class"));
             if(kaynakAlanı.getAttribute("class").contains("good level")){
@@ -259,7 +259,7 @@ public class LoginPage extends BasePage {
     @Given("Tuğla kaynakları Geliştir.$")
     public void upgradeTu()  {
         wait.until(ExpectedConditions.visibilityOf(kaynakAlanları)).click();
-        for (int i=1;i<=15;i++){
+        for (int i=1;i<=1;i++){
             WebElement kaynakAlanı = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//*[@data-gid='2'])["+i+"]"))));
             System.out.println(kaynakAlanı.getAttribute("class"));
             if(kaynakAlanı.getAttribute("class").contains("good level")){
